@@ -1,6 +1,8 @@
 .section {
     max-width: 600px;
     padding-bottom: 30px;
+    height: 100%;
+    /* box-sizing: border-box; */
 }
 
 .bun {
@@ -8,6 +10,8 @@
     flex-direction: column;
     align-items: flex-end;
     gap: 15px;
+    padding-bottom: 16px;
+    padding-top: 16px;
 }
 
 .list {
@@ -18,10 +22,11 @@
     min-width: 584px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
     overflow: auto;
 }
-
+/* .list:first-of-type {
+    padding-top: 16px;
+} */
 .list::-webkit-scrollbar {
     width: 8px;
     background: #2f2f37;

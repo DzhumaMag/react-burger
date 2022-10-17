@@ -1,5 +1,6 @@
-// import React from 'react';
+import React from 'react';
 import { BurgerIcon, ListIcon, ProfileIcon, Logo} from '@ya.praktikum/react-developer-burger-ui-components';
+
 
 import AppHeaderStyles from './AppHeader.module.css';
 
@@ -15,14 +16,14 @@ function AppHeader() {
               </a>
             </li>
             <li>
-            <a href='#feed' className={`${AppHeaderStyles.link} pl-5 pt-4 pr-5 pb-4 text text_type_main-default text_color_inactive`}>
+            <a href='#feed' className={`${AppHeaderStyles.link} pl-5 pt-4 pb-4 text text_type_main-default text_color_inactive`}>
                 <ListIcon type="secondary"/>
                 Лента заказов
               </a>
             </li>
           </ul>
           <Logo />
-          <a href='#account' className={`${AppHeaderStyles.link} ${AppHeaderStyles.account} pl-5 pt-4 pr-5 pb-4 text text_type_main-default text_color_inactive`}>
+          <a href='#profile' className={`${AppHeaderStyles.link} ${AppHeaderStyles.profile} pl-5 pt-4 pr-5 pb-4 text text_type_main-default text_color_inactive`}>
           <ProfileIcon type="secondary" />
           Личный кабинет
         </a>
