@@ -43,27 +43,34 @@ function BurgerIngredients({ data }) {
                 </Tab>
             </div>
             <div className={BurgerIngredientsStyles.container}>
-        <IngredientsCategory
+          <div id={'bun'}>
+          <IngredientsCategory
           id={'bun'}
           title={'Булки'}
           type={'bun'}
           ingredients={data}
           onIngredientClick={setIngredientsModal}
-          />
-        <IngredientsCategory
+          /> 
+          </div>
+          <div id={'sauce'}>
+          <IngredientsCategory
           id={'sauce'}
           title={'Соусы'}
           type={'sauce'}
           ingredients={data}
           onIngredientClick={setIngredientsModal}
         />
-        <IngredientsCategory
+        </div>
+        <div id={'main'}>
+          <IngredientsCategory
           id={'main'}
           title={'Начинки'}
           type={'main'}
           ingredients={data}
           onIngredientClick={setIngredientsModal}
         />
+        </div>
+
       </div>
       {ingredientsModal && (
         <Modal
