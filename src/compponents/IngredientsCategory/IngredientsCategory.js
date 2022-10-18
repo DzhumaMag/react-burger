@@ -19,7 +19,7 @@ function IngredientsCategory({titleId, title, type, ingredients, onIngredientCli
                     <li key={item.titleId}>
                         <IngredientsCard
                             onIngredientClick={onIngredientClick}
-                            ingredients={item} 
+                            ingredient={item} 
                             count={item.id}
                            />
                     </li>
@@ -33,6 +33,9 @@ function IngredientsCategory({titleId, title, type, ingredients, onIngredientCli
 
 IngredientsCategory.propTypes = {
     ingredients: PropTypes.arrayOf(ingredientsPropTypes.isRequired).isRequired,
-    onIngredientClick: PropTypes.func,
+    onIngredientClick: PropTypes.func.isRequired,
+    titleId: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.oneOf(["bun", "main", "sauce"]).isRequired
   };
 export default IngredientsCategory

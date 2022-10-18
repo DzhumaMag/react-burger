@@ -6,7 +6,6 @@ import IngredientsCategory from '../IngredientsCategory/IngredientsCategory';
 import BurgerIngredientsStyles from  './BurgerIngredients.module.css';
 import IngredientDetails from '../IngredientDetails/IngredientDetails';
 import Modal from '../Modal/Modal';
-import { INGREDIENTS } from '../../utils/ingredients';
 
 function BurgerIngredients({ data }) {
     
@@ -16,10 +15,10 @@ function BurgerIngredients({ data }) {
         setCurrent(id);
         document.querySelector(`#${id}`)?.scrollIntoView({ behavior: 'smooth' });
       };
-      const [ingredientsModal, setIngredientsModal] = useState(null);
-      //закрытие всех модальных окон
+      const [ingredientModal, setIngredientModal] = useState(null);
+
       const closeAllModals = () => {
-        setIngredientsModal(null);
+        setIngredientModal(null);
       };
     return (
         <section>
@@ -27,57 +26,57 @@ function BurgerIngredients({ data }) {
             <div
               className={`${BurgerIngredientsStyles.wrapper} pb-10`}>
                 <Tab 
-                    value={'bun'}
-                    active={current === 'bun'} 
+                    value="bun"
+                    active={current === "bun"} 
                     onClick={clickOnIngredientType}>Булки
                 </Tab>
                 <Tab 
-                    value={'sauce'}
-                    active={current === 'sauce'} 
+                    value="sauce"
+                    active={current === "sauce"} 
                     onClick={clickOnIngredientType}>Соусы
                 </Tab>
                 <Tab 
-                    value={'main'}
-                    active={current === 'main'} 
+                    value="main"
+                    active={current === "main"} 
                     onClick={clickOnIngredientType}>Начинки
                 </Tab>
             </div>
             <div className={BurgerIngredientsStyles.container}>
-          <div id={'bun'}>
+          <div id="bun">
           <IngredientsCategory
-          id={'bun'}
-          title={'Булки'}
-          type={'bun'}
+          id="bun"
+          title="Булки"
+          type="bun"
           ingredients={data}
-          onIngredientClick={setIngredientsModal}
+          onIngredientClick={setIngredientModal}
           /> 
           </div>
-          <div id={'sauce'}>
+          <div id="sauce">
           <IngredientsCategory
-          id={'sauce'}
-          title={'Соусы'}
-          type={'sauce'}
+          id="sauce"
+          title="Соусы"
+          type="sauce"
           ingredients={data}
-          onIngredientClick={setIngredientsModal}
+          onIngredientClick={setIngredientModal}
         />
         </div>
-        <div id={'main'}>
+        <div id="main">
           <IngredientsCategory
-          id={'main'}
-          title={'Начинки'}
-          type={'main'}
+          id="main"
+          title="Начинки"
+          type="main"
           ingredients={data}
-          onIngredientClick={setIngredientsModal}
+          onIngredientClick={setIngredientModal}
         />
         </div>
 
       </div>
-      {ingredientsModal && (
+      {ingredientModal && (
         <Modal
           onOverlayClick={closeAllModals}
           closeAllModals={closeAllModals}
         >
-          <IngredientDetails data={ingredientsModal} />
+          <IngredientDetails data={ingredientModal} />
         </Modal>
       )}
 

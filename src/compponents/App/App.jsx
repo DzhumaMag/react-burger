@@ -8,11 +8,11 @@ import { getServerData } from '../../utils/api';
 
 
 function App() {
-  const [ingredient, setIngredients] = useState([]);
+  const [ingredient, setIngredients] = useState([null]);
 
   useEffect(() => {
     getServerData()
-      .then((json) => setIngredients(json.data))
+      .then((res) => setIngredients(res.data))
       .catch((err) => {
         console.log("Ошибка при получении даннных");
       });

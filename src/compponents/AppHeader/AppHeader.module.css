@@ -32,6 +32,9 @@
     align-items: center;
     gap: 8px;
  }
+.link.active {
+    color: #fff;
+}
 
 .profile {
     justify-self: end;

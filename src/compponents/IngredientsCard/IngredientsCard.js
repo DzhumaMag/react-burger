@@ -3,7 +3,7 @@ import IngredientsCardStyles from './IngredientsCard.module.css';
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
 import { ingredientsPropTypes } from '../../utils/prop-types';
-function IngredientsCard({ingredients, count, onIngredientClick}) {
+function IngredientsCard({ingredient, count, onIngredientClick}) {
     return (
         <section className={IngredientsCardStyles.card}>
         {count > 0 && (
@@ -17,20 +17,20 @@ function IngredientsCard({ingredients, count, onIngredientClick}) {
         
             <img      
                 className={`${IngredientsCardStyles.img} ml-4 mr-4`}
-                src={ingredients.image}
-                alt={ingredients.name}
+                src={ingredient.image}
+                alt={ingredient.name}
                 onClick={() => {
-                    onIngredientClick(ingredients);
+                    onIngredientClick(ingredient);
                   }}
             />
 
             <p 
                 className={`${IngredientsCardStyles.price} mt-1 mb-1 text text_type_digits-default`}>
-                {ingredients.price}
-                {ingredients.price && 
-                <CurrencyIcon type={'primary'} />}
+                {ingredient.price}
+                
+                <CurrencyIcon type={'primary'} />
             </p>
-            <p className={`text text_type_main-default`}>{ingredients.name}</p>
+            <p className={`text text_type_main-default`}>{ingredient.name}</p>
             </section>
     )
 }

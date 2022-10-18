@@ -82,7 +82,7 @@ function BurgerConstructor({ data }) {
           onOverlayClick={closeAllModals}
           closeAllModals={closeAllModals}
         >
-          <OrderDetails closeModal={closeAllModals} />
+          <OrderDetails />
         </Modal>
       )}
       </section>
@@ -90,6 +90,6 @@ function BurgerConstructor({ data }) {
   }
 
   BurgerConstructor.propTypes = {
-    ingredients: PropTypes.arrayOf(ingredientsPropTypes.isRequired).isRequired,
+    data: PropTypes.arrayOf(ingredientsPropTypes.isRequired).isRequired,
   };
   export default BurgerConstructor;
