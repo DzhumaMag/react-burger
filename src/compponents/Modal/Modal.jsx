@@ -1,14 +1,11 @@
 import React, {useEffect} from 'react';
 import ReactDOM from 'react-dom';
-import ModalStyles from './ModalStyles.module.css';
+import ModalStyles from './Modal.module.css';
 import ModalOverlay from '../ModalOverlay/ModalOverlay';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
 
 const modalsContainer = document.querySelector('#modals');
-
-
-
 
 function Modal({ closeAllModals, children }) {
   
@@ -31,7 +28,7 @@ function Modal({ closeAllModals, children }) {
           <button
             className={ModalStyles.close}
             onClick={closeAllModals}>
-            <CloseIcon type={'primary'}/>
+            <CloseIcon type="primary"/>
           </button>
           {children}
         </div>

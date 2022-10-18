@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, {useEffect, useState} from 'react';
 import data from '../../utils/data';
 import './App.css';
@@ -8,7 +9,8 @@ import { getServerData } from '../../utils/api';
 
 
 function App() {
-  const [ingredient, setIngredients] = useState([null]);
+
+  const [ingredient, setIngredients] = useState([null]); //eslint-disable-line
 
   useEffect(() => {
     getServerData()

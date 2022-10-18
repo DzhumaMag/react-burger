@@ -79,7 +79,6 @@ function BurgerConstructor({ data }) {
 
         {isModalOpened && (
         <Modal
-          onOverlayClick={closeAllModals}
           closeAllModals={closeAllModals}
         >
           <OrderDetails />

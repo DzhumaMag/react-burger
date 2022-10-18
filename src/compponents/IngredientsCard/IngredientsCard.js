@@ -28,7 +28,7 @@ function IngredientsCard({ingredient, count, onIngredientClick}) {
                 className={`${IngredientsCardStyles.price} mt-1 mb-1 text text_type_digits-default`}>
                 {ingredient.price}
                 
-                <CurrencyIcon type={'primary'} />
+                <CurrencyIcon type="primary" />
             </p>
             <p className={`text text_type_main-default`}>{ingredient.name}</p>
             </section>
