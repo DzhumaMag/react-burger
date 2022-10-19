@@ -73,7 +73,6 @@ function BurgerIngredients({ data }) {
       </div>
       {ingredientModal && (
         <Modal
-          onOverlayClick={closeAllModals}
           closeAllModals={closeAllModals}
         >
           <IngredientDetails data={ingredientModal} />
