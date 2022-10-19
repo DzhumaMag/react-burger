@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, {useEffect, useState} from 'react';
 import data from '../../utils/data';
 import './App.css';
@@ -10,7 +9,7 @@ import { getServerData } from '../../utils/api';
 
 function App() {
 
-  const [ingredient, setIngredients] = useState([null]); //eslint-disable-line
+  const [ingredient, setIngredients] = useState(data); //eslint-disable-line
 
   useEffect(() => {
     getServerData()
@@ -19,13 +18,15 @@ function App() {
         console.log("Ошибка при получении даннных");
       });
   }, []);
+
+  
   return (
     
     <div className="App">
       <AppHeader />
       <main className="wrapper">
-        <BurgerIngredients data={data} /> 
-        <BurgerConstructor data={data} />
+        <BurgerIngredients data={ingredient} /> 
+        <BurgerConstructor data={ingredient} />
       </main>
     </div>
   );

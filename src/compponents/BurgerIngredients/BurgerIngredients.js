@@ -44,7 +44,7 @@ function BurgerIngredients({ data }) {
             <div className={BurgerIngredientsStyles.container}>
           <div id="bun">
           <IngredientsCategory
-          id="bun"
+          titleId="bun"
           title="Булки"
           type="bun"
           ingredients={data}
@@ -53,7 +53,7 @@ function BurgerIngredients({ data }) {
           </div>
           <div id="sauce">
           <IngredientsCategory
-          id="sauce"
+          titleId="sauce"
           title="Соусы"
           type="sauce"
           ingredients={data}
@@ -62,7 +62,7 @@ function BurgerIngredients({ data }) {
         </div>
         <div id="main">
           <IngredientsCategory
-          id="main"
+          titleId="main"
           title="Начинки"
           type="main"
           ingredients={data}
@@ -84,8 +84,9 @@ function BurgerIngredients({ data }) {
     )
 
 }
+
 BurgerIngredients.propTypes = {
-  ingredients: PropTypes.arrayOf(ingredientsPropTypes.isRequired).isRequired,
+  data: PropTypes.arrayOf(ingredientsPropTypes.isRequired).isRequired,
 };
 
 export default BurgerIngredients;

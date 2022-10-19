@@ -12,15 +12,15 @@ function IngredientsCategory({titleId, title, type, ingredients, onIngredientCli
                 className={`${IngredientsCategoryStyles.title} text text_type_main-medium pb-6`}
                 id={titleId}>{title}
             </h2>
-            <ul className={`${IngredientsCategoryStyles.list}`}>
+            <ul className={`${IngredientsCategoryStyles.list}`}> 
             {ingredients.map((item) => {
             return (
                 item.type === type && (
-                    <li key={item.titleId}>
+                    <li key={item._id}>
                         <IngredientsCard
                             onIngredientClick={onIngredientClick}
                             ingredient={item} 
-                            count={item.id}
+                            count={item._id}
                            />
                     </li>
                 )

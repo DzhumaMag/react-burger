@@ -18,17 +18,18 @@ function BurgerConstructor({ data }) {
   function openModal() {
     setIsModalOpened(true);
   };
-
+    let flagSelectFirstBun = 1;
     const ingredients = data.reduce((res, item) => {
       res.total += item.price;
-  
-      if (item.type === 'bun') {
-        res.bun.push(item);
+      if ((item.type === 'bun') && (flagSelectFirstBun === 1)) {
+        res.bun = item;
+        flagSelectFirstBun = 0;
       } else {
         res.others.push(item);
       }
       return res;
-    }, { others: [], total: 0, bun: []})
+    }, { others: [], total: 0})
+
 
     return (
       <section className={`${BurgerConstructorStyles.section} pt-25 pl-4 pr-4 pb-13`}>
@@ -37,9 +38,9 @@ function BurgerConstructor({ data }) {
           <ConstructorElement
             type="top"
             isLocked={true}
-            text={`${ingredients.bun[0].name} (верх)`}
-            price={ingredients.bun[0].price}
-            thumbnail={ingredients.bun[0].image}/>
+            text={`${ingredients.bun.name} (верх)`}
+            price={ingredients.bun.price}
+            thumbnail={ingredients.bun.image}/>
         </div>
         <ul className={BurgerConstructorStyles.list} >
           {
@@ -63,9 +64,9 @@ function BurgerConstructor({ data }) {
           <ConstructorElement
             type="bottom"
             isLocked={true}
-            text={`${ingredients.bun[0].name} (низ)`}
-            price={ingredients.bun[0].price}
-            thumbnail={ingredients.bun[0].image}/>
+            text={`${ingredients.bun.name} (низ)`}
+            price={ingredients.bun.price}
+            thumbnail={ingredients.bun.image}/>
         </div>
         <div className={`${BurgerConstructorStyles.total}  pr-4`}>
           <div className={`${BurgerConstructorStyles.info}  pr-10`}>
