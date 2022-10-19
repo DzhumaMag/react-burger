@@ -17,7 +17,7 @@ function BurgerIngredients({ data }) {
       };
       const [ingredientModal, setIngredientModal] = useState(null);
 
-      const closeAllModals = () => {
+      const closeModal = () => {
         setIngredientModal(null);
       };
     return (
@@ -73,7 +73,7 @@ function BurgerIngredients({ data }) {
       </div>
       {ingredientModal && (
         <Modal
-          closeAllModals={closeAllModals}
+          closeAllModals={closeModal}
         >
           <IngredientDetails data={ingredientModal} />
         </Modal>

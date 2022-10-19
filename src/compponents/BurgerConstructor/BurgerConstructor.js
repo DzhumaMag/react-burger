@@ -10,7 +10,7 @@ function BurgerConstructor({ data }) {
 
   const [isModalOpened, setIsModalOpened] = useState(false);
 
-  function closeAllModals() {
+  function closeDetailOrder() {
     setIsModalOpened(false);
   };
 
@@ -93,7 +93,7 @@ function BurgerConstructor({ data }) {
 
         {isModalOpened && (
         <Modal
-          closeAllModals={closeAllModals}
+          closeAllModals={closeDetailOrder}
         >
           <OrderDetails />
         </Modal>
