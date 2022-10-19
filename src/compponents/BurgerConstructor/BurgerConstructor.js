@@ -18,17 +18,30 @@ function BurgerConstructor({ data }) {
   function openModal() {
     setIsModalOpened(true);
   };
-    let flagSelectFirstBun = 1;
-    const ingredients = data.reduce((res, item) => {
-      res.total += item.price;
-      if ((item.type === 'bun') && (flagSelectFirstBun === 1)) {
-        res.bun = item;
-        flagSelectFirstBun = 0;
-      } else {
-        res.others.push(item);
+
+  const totalIngredient = data.reduce(
+    (total, item) => {
+      if(item.type ==="bun") {
+       return total += item.price*2;
       }
-      return res;
-    }, { others: [], total: 0})
+      return total += item.price;
+    },
+    0
+  );
+
+  const bun = data.find((ingredient) => ingredient.type === "bun");
+  const ingredientsData = data.filter((ingredient) => ingredient.type !== "bun")
+    // let flagSelectFirstBun = 1;
+    // const ingredients = data.reduce((res, item) => {
+    //   res.total += item.price;
+    //   if ((item.type === 'bun') && (flagSelectFirstBun === 1)) {
+    //     res.bun = item;
+    //     flagSelectFirstBun = 0;
+    //   } else {
+    //     res.others.push(item);
+    //   }
+    //   return res;
+    // }, { others: [], total: 0})
 
 
     return (
@@ -38,39 +51,39 @@ function BurgerConstructor({ data }) {
           <ConstructorElement
             type="top"
             isLocked={true}
-            text={`${ingredients.bun.name} (верх)`}
-            price={ingredients.bun.price}
-            thumbnail={ingredients.bun.image}/>
+            text={`${bun.name} (верх)`}
+            price={bun.price}
+            thumbnail={bun.image}/>
         </div>
         <ul className={BurgerConstructorStyles.list} >
-          {
-            ingredients.others.map((item, index) => {
-              if (item.type !== 'bun') {
-                return (
-                  <li key={index} className={`${BurgerConstructorStyles.item} pb-4 pr-2`} >
-                    <DragIcon type="primary" />
-                    <ConstructorElement
-                      isLocked={false}
-                      text={item.name}
-                      price={item.price}
-                      thumbnail={item.image}/>
-                  </li>
-                );
-              } else {return <></>}
-            })
-          }
+        {ingredientsData.map((ingredient)=>{
+          return(
+            <li key={ingredient._id}
+              className={`${BurgerConstructorStyles.item} pb-4 pr-2`} >
+                <DragIcon type="primary" />
+                <ConstructorElement
+                  isLocked={false}
+                  text={ingredient.name}
+                  price={ingredient.price}
+                  thumbnail={ingredient.image}/>
+            </li>  
+          )
+        })}
+       
         </ul>
         <div className={`${BurgerConstructorStyles.bun} pb-10 pl-8 pr-4`}>
           <ConstructorElement
             type="bottom"
             isLocked={true}
-            text={`${ingredients.bun.name} (низ)`}
-            price={ingredients.bun.price}
-            thumbnail={ingredients.bun.image}/>
+            text={`${bun.name} (низ)`}
+            price={bun.price}
+            thumbnail={bun.image}/>
         </div>
         <div className={`${BurgerConstructorStyles.total}  pr-4`}>
           <div className={`${BurgerConstructorStyles.info}  pr-10`}>
-            <span className='text text_type_digits-default'>{ingredients.total}</span>
+            <span className='text text_type_digits-default'>
+              {totalIngredient}
+            </span>
             <CurrencyIcon type="primary"/>
           </div>
           <Button onClick={openModal} type="primary" size="medium" htmlType="submit">
