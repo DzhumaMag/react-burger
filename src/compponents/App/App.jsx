@@ -9,7 +9,7 @@ import { getServerData } from '../../utils/api';
 
 function App() {
 
-  const [ingredient, setIngredients] = useState(data); //eslint-disable-line
+  const [ingredients, setIngredients] = useState(data); //eslint-disable-line
 
   useEffect(() => {
     getServerData()
@@ -25,8 +25,8 @@ function App() {
     <div className="App">
       <AppHeader />
       <main className="wrapper">
-        <BurgerIngredients data={ingredient} /> 
-        <BurgerConstructor data={ingredient} />
+        <BurgerIngredients data={ingredients} /> 
+        <BurgerConstructor data={ingredients} />
       </main>
     </div>
   );

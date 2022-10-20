@@ -15,6 +15,7 @@ function IngredientsCategory({titleId, title, type, ingredients, onIngredientCli
             <ul className={`${IngredientsCategoryStyles.list}`}> 
             {ingredients.map((item) => {
             return (
+
                 item.type === type && (
                     <li key={item._id}>
                         <IngredientsCard

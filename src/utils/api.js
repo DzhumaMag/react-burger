@@ -1,6 +1,6 @@
 // import { URL } from './ingredients';
-const baseUrl = "https://norma.nomoreparties.space/api"
-export const URL = `${baseUrl}/ingredients` ;
+const BASE_URL = "https://norma.nomoreparties.space/api"
+export const URL = `${BASE_URL}/ingredients` ;
 
 const checkResponce = (res) => {
   return res.ok ? res.json() : Promise.reject(`При загрузке данных произошла ошибка: ${res.status}`);

@@ -31,18 +31,6 @@ function BurgerConstructor({ data }) {
 
   const bun = data.find((ingredient) => ingredient.type === "bun");
   const ingredientsData = data.filter((ingredient) => ingredient.type !== "bun")
-    // let flagSelectFirstBun = 1;
-    // const ingredients = data.reduce((res, item) => {
-    //   res.total += item.price;
-    //   if ((item.type === 'bun') && (flagSelectFirstBun === 1)) {
-    //     res.bun = item;
-    //     flagSelectFirstBun = 0;
-    //   } else {
-    //     res.others.push(item);
-    //   }
-    //   return res;
-    // }, { others: [], total: 0})
-
 
     return (
       <section className={`${BurgerConstructorStyles.section} pt-25 pl-4 pr-4 pb-13`}>

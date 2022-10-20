@@ -5,12 +5,17 @@ import PropTypes from 'prop-types';
 import { ingredientsPropTypes } from '../../utils/prop-types';
 function IngredientsCard({ingredient, count, onIngredientClick}) {
     return (
-        <section className={IngredientsCardStyles.card}>
+        <section 
+        className={IngredientsCardStyles.card}
+        onClick={() => {
+            onIngredientClick(ingredient);
+          }}>
         {count > 0 && (
             <Counter
                 count={count}
                 size='default'
                 className={`text text_type_digits-default`}
+                
             >
             </Counter>
         )}
@@ -19,9 +24,7 @@ function IngredientsCard({ingredient, count, onIngredientClick}) {
                 className={`${IngredientsCardStyles.img} ml-4 mr-4`}
                 src={ingredient.image}
                 alt={ingredient.name}
-                onClick={() => {
-                    onIngredientClick(ingredient);
-                  }}
+
             />
 
             <p 
@@ -37,7 +40,7 @@ function IngredientsCard({ingredient, count, onIngredientClick}) {
 
 IngredientsCard.propTypes = {
     ingredient: ingredientsPropTypes.isRequired,
-    count: PropTypes.string,
+    count: PropTypes.number,
     onIngredientClick: PropTypes.func.isRequired,
   };
 export default IngredientsCard;
