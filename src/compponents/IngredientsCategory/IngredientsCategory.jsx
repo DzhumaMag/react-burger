@@ -22,7 +22,7 @@ function IngredientsCategory({titleId, title, type, ingredients, onIngredientCli
                         <IngredientsCard
                             onIngredientClick={onIngredientClick}
                             ingredient={item} 
-                            count={item._id}
+                            count={0}
                            />
                     </li>
                 )

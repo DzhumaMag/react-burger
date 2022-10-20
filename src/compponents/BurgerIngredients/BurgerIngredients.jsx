@@ -7,7 +7,7 @@ import BurgerIngredientsStyles from  './BurgerIngredients.module.css';
 import IngredientDetails from '../IngredientDetails/IngredientDetails';
 import Modal from '../Modal/Modal';
 
-function BurgerIngredients({ data }) {
+function BurgerIngredients( {data} ) {
     
     const [current, setCurrent] = React.useState('bun');
 
@@ -85,7 +85,7 @@ function BurgerIngredients({ data }) {
 }
 
 BurgerIngredients.propTypes = {
-  data: PropTypes.arrayOf(ingredientsPropTypes.isRequired).isRequired,
+  data: PropTypes.arrayOf(ingredientsPropTypes.isRequired).isRequired 
 };
 
 export default BurgerIngredients;

@@ -6,7 +6,7 @@ import OrderDetails from '../OrderDetails/OrderDetails';
 import PropTypes from 'prop-types';
 import { ingredientsPropTypes } from '../../utils/prop-types';
 
-function BurgerConstructor({ data }) {
+function BurgerConstructor( {data} ) {
 
   const [isModalOpened, setIsModalOpened] = useState(false);
 

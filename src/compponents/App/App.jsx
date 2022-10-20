@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import data from '../../utils/data';
+// import data from '../../utils/data';
 import './App.css';
 import AppHeader from '../AppHeader/AppHeader';
 import BurgerConstructor  from '../BurgerConstructor/BurgerConstructor';
@@ -9,7 +9,7 @@ import { getServerData } from '../../utils/api';
 
 function App() {
 
-  const [ingredients, setIngredients] = useState(data); //eslint-disable-line
+  const [ingredients, setIngredients] = useState(null); //eslint-disable-line
 
   useEffect(() => {
     getServerData()
@@ -17,19 +17,20 @@ function App() {
       .catch((err) => {
         console.log("Ошибка при получении даннных");
       });
-  }, []);
+    }, []);
 
-  
+
   return (
-    
     <div className="App">
       <AppHeader />
       <main className="wrapper">
-        <BurgerIngredients data={ingredients} /> 
-        <BurgerConstructor data={ingredients} />
+        {ingredients && <BurgerIngredients data={ingredients} />}
+        {ingredients && <BurgerConstructor data={ingredients} />}
       </main>
     </div>
-  );
-}
+    );
+
+
+    }
 
 export default App;
