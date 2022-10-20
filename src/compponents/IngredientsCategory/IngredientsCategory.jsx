@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { ingredientsPropTypes } from '../../utils/prop-types';
 
 function IngredientsCategory({titleId, title, type, ingredients, onIngredientClick}) {
+    
     return ( 
         <section>
             <h2 
@@ -30,6 +31,7 @@ function IngredientsCategory({titleId, title, type, ingredients, onIngredientCli
             </ul> 
         </section>
     )
+    
 }
 
 IngredientsCategory.propTypes = {
