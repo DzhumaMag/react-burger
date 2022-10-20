@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-// import data from '../../utils/data';
 import './App.css';
 import AppHeader from '../AppHeader/AppHeader';
 import BurgerConstructor  from '../BurgerConstructor/BurgerConstructor';
