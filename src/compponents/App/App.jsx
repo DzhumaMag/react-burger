@@ -8,7 +8,7 @@ import { getServerData } from '../../utils/api';
 
 function App() {
 
-  const [ingredients, setIngredients] = useState(null); //eslint-disable-line
+  const [ingredients, setIngredients] = useState(null);
 
   useEffect(() => {
     getServerData()
