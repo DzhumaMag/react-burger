@@ -1,27 +1,33 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { Button, ConstructorElement, CurrencyIcon, DragIcon} from  '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerConstructorStyles from './BurgerConstructor.module.css'
 import Modal from '../Modal/Modal';
 import OrderDetails from '../OrderDetails/OrderDetails';
-import PropTypes from 'prop-types';
-import { ingredientsPropTypes } from '../../utils/prop-types';
+import { BurgerIngredientsContext } from '../../services/BurgerIngredientsContext';
+import { getOrderNum } from '../../utils/api';
 
-function BurgerConstructor( {data} ) {
+function BurgerConstructor() {
 
   const [isModalOpened, setIsModalOpened] = useState(false);
 
+  const [orderNumber, setOrderNumber] = useState(null);
+  
+  const ingredients = useContext(BurgerIngredientsContext);
+  const ingredientIds  = ingredients.map((ingredientIds) => {return ingredientIds._id})
+  const handleOrderClick = () => {
+    getOrderNum(ingredientIds)
+        .then((res)=> { 
+          setOrderNumber(res.order.number);
+          setIsModalOpened(res.success); 
+        });
+      };
   function closeDetailOrder() {
     setIsModalOpened(false);
   };
-
   
-  function openModal() {
-    setIsModalOpened(true);
-  };
-
-  const totalIngredient = data.reduce(
+  const totalIngredient = ingredients.reduce(
     (total, item) => {
-      if(item.type ==="bun") {
+      if(item.type === "bun") {
        return total += item.price*2;
       }
       return total += item.price;
@@ -29,8 +35,8 @@ function BurgerConstructor( {data} ) {
     0
   );
 
-  const bun = data.find((ingredient) => ingredient.type === "bun");
-  const ingredientsData = data.filter((ingredient) => ingredient.type !== "bun")
+  const bun = ingredients.find((ingredient) => ingredient.type === "bun");
+  const ingredientsData = ingredients.filter((ingredient) => ingredient.type !== "bun")
 
     return (
       <section className={`${BurgerConstructorStyles.section} pt-25 pl-4 pr-4 pb-13`}>
@@ -74,7 +80,7 @@ function BurgerConstructor( {data} ) {
             </span>
             <CurrencyIcon type="primary"/>
           </div>
-          <Button onClick={openModal} type="primary" size="medium" htmlType="submit">
+          <Button onClick={handleOrderClick} type="primary" size="medium" htmlType="submit">
             Оформить заказ
           </Button>
         </div>
@@ -83,14 +89,14 @@ function BurgerConstructor( {data} ) {
         <Modal
           closeAllModals={closeDetailOrder}
         >
-          <OrderDetails />
+          <OrderDetails orderNum={orderNumber}/>
         </Modal>
       )}
       </section>
     );
   }
 
-  BurgerConstructor.propTypes = {
-    data: PropTypes.arrayOf(ingredientsPropTypes.isRequired).isRequired,
-  };
+  // BurgerConstructor.propTypes = {
+  //   data: PropTypes.arrayOf(ingredientsPropTypes.isRequired).isRequired,
+  // };
   export default BurgerConstructor;

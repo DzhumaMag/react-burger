@@ -1,7 +1,6 @@
 import React from 'react';
 import IngredientsCategoryStyles from './IngredientsCategory.module.css';
 import IngredientsCard from '../IngredientsCard/IngredientsCard';
-// import data from '../../utils/data';
 import PropTypes from 'prop-types';
 import { ingredientsPropTypes } from '../../utils/prop-types';
 
@@ -16,7 +15,6 @@ function IngredientsCategory({titleId, title, type, ingredients, onIngredientCli
             <ul className={`${IngredientsCategoryStyles.list}`}> 
             {ingredients.map((item) => {
             return (
-
                 item.type === type && (
                     <li key={item._id}>
                         <IngredientsCard

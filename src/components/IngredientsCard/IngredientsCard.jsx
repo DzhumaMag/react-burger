@@ -15,18 +15,14 @@ function IngredientsCard({ingredient, count, onIngredientClick}) {
                 count={count}
                 size='default'
                 className={`text text_type_digits-default`}
-                
             >
             </Counter>
         )}
-        
             <img      
                 className={`${IngredientsCardStyles.img} ml-4 mr-4`}
                 src={ingredient.image}
                 alt={ingredient.name}
-
             />
-
             <p 
                 className={`${IngredientsCardStyles.price} mt-1 mb-1 text text_type_digits-default`}>
                 {ingredient.price}
@@ -40,7 +36,7 @@ function IngredientsCard({ingredient, count, onIngredientClick}) {
 
 IngredientsCard.propTypes = {
     ingredient: ingredientsPropTypes.isRequired,
-    count: PropTypes.number,
+    count: PropTypes.number ,
     onIngredientClick: PropTypes.func.isRequired,
   };
 export default IngredientsCard;
