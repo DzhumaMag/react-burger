@@ -6,11 +6,11 @@ import { BurgerIngredientsContext } from '../../services/BurgerIngredientsContex
 import PropTypes from 'prop-types';
 import { ingredientsPropTypes } from '../../utils/prop-types';
 function OrderDetails(orderNum) {
-  // const orderNumbtr = useContext(BurgerIngredientsContext)
-
+  // const orderNumber = useContext(BurgerIngredientsContext)
+  console.log(orderNum);
     return (
         <div className={`${OrderDetailsStyles.popup} pt-30 pr-25 pb-30 pl-25 `}>
-          <h2 className={`${OrderDetailsStyles.order} text text_type_digits-large mb-8 `}>{orderNum}</h2>
+          <h2 className={`${OrderDetailsStyles.order} text text_type_digits-large mb-8 `}>{orderNum.id}</h2>
           <p className={'text text_type_main-medium mb-15'}>идентификатор заказа</p>
           <img
             className={'mb-15'}

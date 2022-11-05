@@ -18,15 +18,16 @@ function BurgerConstructor() {
   const handleOrderClick = () => {
     getOrderNum(ingredientIds)
         .then((res)=> { 
-          // setIsModalOpened(res.success); 
+          setIsModalOpened(res.success); 
           setOrderNumber(res.order.number);
         });
       };
+      console.log(orderNumber);
   function closeDetailOrder() {
     setIsModalOpened(false);
   };
   
-console.log(orderNumber)
+// console.log(orderNumber)
 
   function openModal() {
 
@@ -102,7 +103,7 @@ console.log(orderNumber)
         <Modal
           closeAllModals={closeDetailOrder}
         >
-          <OrderDetails orderNum={setOrderNumber?.order?.number}/>
+          <OrderDetails orderNum={orderNumber?.order?.number}/>
         </Modal>
       )}
       </section>
