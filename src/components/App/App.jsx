@@ -3,12 +3,16 @@ import './App.css';
 import AppHeader from '../AppHeader/AppHeader';
 import BurgerConstructor  from '../BurgerConstructor/BurgerConstructor';
 import BurgerIngredients from '../BurgerIngredients/BurgerIngredients';
-import { getServerData } from '../../utils/api';
-
-
+import { getServerData, getOrderNum } from '../../utils/api';
+import { BurgerIngredientsContext } from '../../services/BurgerIngredientsContext';
 function App() {
 
   const [ingredients, setIngredients] = useState(null);
+
+  const initialState = {
+    bun: null,
+    ingredients: []
+  }
 
   useEffect(() => {
     getServerData()
@@ -22,10 +26,13 @@ function App() {
   return (
     <div className="App">
       <AppHeader />
-      <main className="wrapper">
-        {ingredients && <BurgerIngredients data={ingredients} />}
-        {ingredients && <BurgerConstructor data={ingredients} />}
-      </main>
+      <BurgerIngredientsContext.Provider value={ingredients}>
+        <main className="wrapper">
+          {ingredients && <BurgerIngredients data={ingredients} />}
+          {ingredients && <BurgerConstructor data={ingredients} />}
+        </main>
+      </BurgerIngredientsContext.Provider>
+
     </div>
     );
 

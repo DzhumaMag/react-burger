@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { ingredientsPropTypes } from '../../utils/prop-types';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -6,9 +6,11 @@ import IngredientsCategory from '../IngredientsCategory/IngredientsCategory';
 import BurgerIngredientsStyles from  './BurgerIngredients.module.css';
 import IngredientDetails from '../IngredientDetails/IngredientDetails';
 import Modal from '../Modal/Modal';
+import { BurgerIngredientsContext } from '../../services/BurgerIngredientsContext';
 
-function BurgerIngredients( {data} ) {
-    
+function BurgerIngredients() {
+    const ingredients = useContext(BurgerIngredientsContext);
+
     const [current, setCurrent] = React.useState('bun');
 
     function clickOnIngredientType(id){
@@ -47,7 +49,7 @@ function BurgerIngredients( {data} ) {
           titleId="bun"
           title="Булки"
           type="bun"
-          ingredients={data}
+          ingredients={ingredients}
           onIngredientClick={setIngredientModal}
           /> 
           </div>
@@ -56,7 +58,7 @@ function BurgerIngredients( {data} ) {
           titleId="sauce"
           title="Соусы"
           type="sauce"
-          ingredients={data}
+          ingredients={ingredients}
           onIngredientClick={setIngredientModal}
         />
         </div>
@@ -65,16 +67,14 @@ function BurgerIngredients( {data} ) {
           titleId="main"
           title="Начинки"
           type="main"
-          ingredients={data}
+          ingredients={ingredients}
           onIngredientClick={setIngredientModal}
         />
         </div>
 
       </div>
       {ingredientModal && (
-        <Modal
-          closeAllModals={closeModal}
-        >
+        <Modal closeAllModals={closeModal}>
           <IngredientDetails data={ingredientModal} />
         </Modal>
       )}
@@ -84,8 +84,8 @@ function BurgerIngredients( {data} ) {
 
 }
 
-BurgerIngredients.propTypes = {
-  data: PropTypes.arrayOf(ingredientsPropTypes.isRequired).isRequired 
-};
+// BurgerIngredients.propTypes = {
+//   data: PropTypes.arrayOf(ingredientsPropTypes.isRequired).isRequired 
+// };
 
 export default BurgerIngredients;

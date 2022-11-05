@@ -1,27 +1,45 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { Button, ConstructorElement, CurrencyIcon, DragIcon} from  '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerConstructorStyles from './BurgerConstructor.module.css'
 import Modal from '../Modal/Modal';
 import OrderDetails from '../OrderDetails/OrderDetails';
-import PropTypes from 'prop-types';
-import { ingredientsPropTypes } from '../../utils/prop-types';
-
-function BurgerConstructor( {data} ) {
+// import PropTypes from 'prop-types';
+// import { ingredientsPropTypes } from '../../utils/prop-types';
+import { BurgerIngredientsContext } from '../../services/BurgerIngredientsContext';
+import { getOrderNum } from '../../utils/api';
+function BurgerConstructor() {
 
   const [isModalOpened, setIsModalOpened] = useState(false);
 
+  const [orderNumber, setOrderNumber] = useState(null);
+  
+  const ingredients = useContext(BurgerIngredientsContext);
+  const ingredientIds  = ingredients.map((ingredientIds) => {return ingredientIds._id})
+  const handleOrderClick = () => {
+    getOrderNum(ingredientIds)
+        .then((res)=> { 
+          // setIsModalOpened(res.success); 
+          setOrderNumber(res.order.number);
+        });
+      };
   function closeDetailOrder() {
     setIsModalOpened(false);
   };
-
   
+console.log(orderNumber)
+
   function openModal() {
+
+    // handleOrderClick()
     setIsModalOpened(true);
+
   };
 
-  const totalIngredient = data.reduce(
+
+  
+  const totalIngredient = ingredients.reduce(
     (total, item) => {
-      if(item.type ==="bun") {
+      if(item.type === "bun") {
        return total += item.price*2;
       }
       return total += item.price;
@@ -29,9 +47,10 @@ function BurgerConstructor( {data} ) {
     0
   );
 
-  const bun = data.find((ingredient) => ingredient.type === "bun");
-  const ingredientsData = data.filter((ingredient) => ingredient.type !== "bun")
-
+  const bun = ingredients.find((ingredient) => ingredient.type === "bun");
+  const ingredientsData = ingredients.filter((ingredient) => ingredient.type !== "bun")
+  // const ingredientsOrder = [ingredients.bun._id, , ingredients.bun._id]
+  // console.log(ingredientsOrder);
     return (
       <section className={`${BurgerConstructorStyles.section} pt-25 pl-4 pr-4 pb-13`}>
         <div className={`${BurgerConstructorStyles.bun}  pl-4 pr-4`}>
@@ -74,7 +93,7 @@ function BurgerConstructor( {data} ) {
             </span>
             <CurrencyIcon type="primary"/>
           </div>
-          <Button onClick={openModal} type="primary" size="medium" htmlType="submit">
+          <Button onClick={handleOrderClick} type="primary" size="medium" htmlType="submit">
             Оформить заказ
           </Button>
         </div>
@@ -83,14 +102,14 @@ function BurgerConstructor( {data} ) {
         <Modal
           closeAllModals={closeDetailOrder}
         >
-          <OrderDetails />
+          <OrderDetails orderNum={setOrderNumber?.order?.number}/>
         </Modal>
       )}
       </section>
     );
   }
 
-  BurgerConstructor.propTypes = {
-    data: PropTypes.arrayOf(ingredientsPropTypes.isRequired).isRequired,
-  };
+  // BurgerConstructor.propTypes = {
+  //   data: PropTypes.arrayOf(ingredientsPropTypes.isRequired).isRequired,
+  // };
   export default BurgerConstructor;
