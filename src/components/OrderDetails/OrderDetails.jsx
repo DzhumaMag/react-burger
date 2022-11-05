@@ -1,16 +1,12 @@
-import React, {useContext, useState} from 'react';
 import done from '../../images/done.svg';
 import OrderDetailsStyles from './OrderDetails.module.css';
-import { getOrderNum } from '../../utils/api';
-import { BurgerIngredientsContext } from '../../services/BurgerIngredientsContext';
 import PropTypes from 'prop-types';
-import { ingredientsPropTypes } from '../../utils/prop-types';
+
 function OrderDetails(orderNum) {
-  // const orderNumber = useContext(BurgerIngredientsContext)
-  console.log(orderNum);
+
     return (
         <div className={`${OrderDetailsStyles.popup} pt-30 pr-25 pb-30 pl-25 `}>
-          <h2 className={`${OrderDetailsStyles.order} text text_type_digits-large mb-8 `}>{orderNum.id}</h2>
+          <h2 className={`${OrderDetailsStyles.order} text text_type_digits-large mb-8 `}>{orderNum.orderNum}</h2>
           <p className={'text text_type_main-medium mb-15'}>идентификатор заказа</p>
           <img
             className={'mb-15'}

@@ -3,10 +3,9 @@ import { Button, ConstructorElement, CurrencyIcon, DragIcon} from  '@ya.praktiku
 import BurgerConstructorStyles from './BurgerConstructor.module.css'
 import Modal from '../Modal/Modal';
 import OrderDetails from '../OrderDetails/OrderDetails';
-// import PropTypes from 'prop-types';
-// import { ingredientsPropTypes } from '../../utils/prop-types';
 import { BurgerIngredientsContext } from '../../services/BurgerIngredientsContext';
 import { getOrderNum } from '../../utils/api';
+
 function BurgerConstructor() {
 
   const [isModalOpened, setIsModalOpened] = useState(false);
@@ -18,25 +17,13 @@ function BurgerConstructor() {
   const handleOrderClick = () => {
     getOrderNum(ingredientIds)
         .then((res)=> { 
-          setIsModalOpened(res.success); 
           setOrderNumber(res.order.number);
+          setIsModalOpened(res.success); 
         });
       };
-      console.log(orderNumber);
   function closeDetailOrder() {
     setIsModalOpened(false);
   };
-  
-// console.log(orderNumber)
-
-  function openModal() {
-
-    // handleOrderClick()
-    setIsModalOpened(true);
-
-  };
-
-
   
   const totalIngredient = ingredients.reduce(
     (total, item) => {
@@ -50,8 +37,7 @@ function BurgerConstructor() {
 
   const bun = ingredients.find((ingredient) => ingredient.type === "bun");
   const ingredientsData = ingredients.filter((ingredient) => ingredient.type !== "bun")
-  // const ingredientsOrder = [ingredients.bun._id, , ingredients.bun._id]
-  // console.log(ingredientsOrder);
+
     return (
       <section className={`${BurgerConstructorStyles.section} pt-25 pl-4 pr-4 pb-13`}>
         <div className={`${BurgerConstructorStyles.bun}  pl-4 pr-4`}>
@@ -103,7 +89,7 @@ function BurgerConstructor() {
         <Modal
           closeAllModals={closeDetailOrder}
         >
-          <OrderDetails orderNum={orderNumber?.order?.number}/>
+          <OrderDetails orderNum={orderNumber}/>
         </Modal>
       )}
       </section>
