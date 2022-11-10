@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useMemo} from 'react';
 import { Button, ConstructorElement, CurrencyIcon, DragIcon} from  '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerConstructorStyles from './BurgerConstructor.module.css'
 import Modal from '../Modal/Modal';
@@ -13,7 +13,7 @@ function BurgerConstructor() {
   const [orderNumber, setOrderNumber] = useState(null);
   
   const ingredients = useContext(BurgerIngredientsContext);
-  const ingredientIds  = ingredients.map((ingredientIds) => {return ingredientIds._id})
+  const ingredientIds  = useMemo(()=>ingredients.map((ingredientIds) => {return ingredientIds._id}));
   const handleOrderClick = () => {
     getOrderNum(ingredientIds)
         .then((res)=> { 
@@ -25,18 +25,19 @@ function BurgerConstructor() {
     setIsModalOpened(false);
   };
   
-  const totalIngredient = ingredients.reduce(
+  const totalIngredient = useMemo(()=>(ingredients.reduce(
     (total, item) => {
       if(item.type === "bun") {
        return total += item.price*2;
       }
       return total += item.price;
-    },
+    }
+    ,
     0
-  );
+  )));
 
-  const bun = ingredients.find((ingredient) => ingredient.type === "bun");
-  const ingredientsData = ingredients.filter((ingredient) => ingredient.type !== "bun")
+  const bun = useMemo(()=>(ingredients.find((ingredient) => ingredient.type === "bun")));
+  const ingredientsData = useMemo(()=> ingredients.filter((ingredient) => ingredient.type !== "bun"));
 
     return (
       <section className={`${BurgerConstructorStyles.section} pt-25 pl-4 pr-4 pb-13`}>

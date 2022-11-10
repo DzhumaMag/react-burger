@@ -9,11 +9,6 @@ function App() {
 
   const [ingredients, setIngredients] = useState(null);
 
-  const initialState = {
-    bun: null,
-    ingredients: []
-  }
-
   useEffect(() => {
     getServerData()
       .then((res) => setIngredients(res.data))
